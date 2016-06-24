@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Summer Of Code</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_day4">day4</string>
+    <string name="title_activity_pset8">pset8</string>
+</resources>

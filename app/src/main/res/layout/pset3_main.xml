@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_weight="1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Material Design"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:elevation="20dp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/materialdesign_introduction"
+        android:scaleType="centerCrop" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="The material metaphor is the unifying theory of a rationalized space and a system of motion. The material is grounded in tactile reality, inspired by the study of paper and ink, yet technologically advanced and open to imagination and magic."
+        android:padding="8dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+        <ImageView
+            android:layout_width="72px"
+            android:layout_height="72px"
+            android:src="@drawable/fbicon"/>
+        <ImageView
+             android:layout_width="72px"
+            android:layout_height="72px"
+            android:src="@drawable/webicon"
+            android:onClick="webaction"/>
+        <ImageView
+            android:layout_width="72px"
+            android:layout_height="72px"
+        android:src="@drawable/locicon"
+            android:onClick="locationaction"/>
+        <ImageView
+            android:layout_width="72px"
+            android:layout_height="72px"
+            android:src="@drawable/callbtn"
+            android:onClick="callaction"/>
+    </LinearLayout>
+
+</LinearLayout>

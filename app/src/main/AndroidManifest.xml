@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.practiceset5">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".pset1"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".pset2"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".pset3"
+            android:label="@string/app_name" />
+        <activity android:name=".day1" />
+        <activity android:name=".day2" />
+        <activity android:name=".day3" />
+        <activity android:name=".pset4" />
+        <activity android:name=".pset5" />
+        <activity android:name=".pset5_2" />
+        <activity android:name=".day4" />
+        <activity android:name=".pset6" />
+        <activity android:name=".pset7" />
+        <activity
+            android:name=".pset8"
+            android:label="@string/title_activity_pset8"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".pset9" />
+        <activity android:name=".day5" />
+        <activity android:name=".pset10" />
+        <activity android:name=".pset11"></activity>
+        <receiver android:name=".pset11_2_reciever">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"></action>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
