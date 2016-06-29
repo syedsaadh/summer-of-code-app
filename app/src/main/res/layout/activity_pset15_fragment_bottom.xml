@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#4e86ff"
+    android:gravity="center_vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pset15_textView"
+        android:text="Username"
+        android:textSize="24sp"
+        android:textColor="#ffff"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pset15_textView2"
+        android:text="Password"
+        android:textSize="24sp"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

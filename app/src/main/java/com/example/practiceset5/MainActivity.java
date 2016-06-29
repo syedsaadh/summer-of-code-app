@@ -68,6 +68,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        LinearLayout btn6=(LinearLayout)findViewById(R.id.btn6);
+        btn6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, day6.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout btn7=(LinearLayout)findViewById(R.id.btn7);
+        btn7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, day7.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout btn8=(LinearLayout)findViewById(R.id.btn8);
+        btn8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, day8.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

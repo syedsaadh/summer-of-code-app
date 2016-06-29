@@ -3,7 +3,7 @@
     package="com.example.practiceset5">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -46,12 +46,22 @@
         <activity android:name=".pset9" />
         <activity android:name=".day5" />
         <activity android:name=".pset10" />
-        <activity android:name=".pset11"></activity>
+        <activity android:name=".pset11" />
+
         <receiver android:name=".pset11_2_reciever">
             <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE"></action>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".day6" />
+        <activity android:name=".pset12" />
+        <activity android:name=".pset13" />
+        <activity android:name=".day7" />
+        <activity android:name=".pset15" />
+        <activity android:name=".pset16" />
+        <activity android:name=".day8" />
+        <activity android:name=".pset17"></activity>
     </application>
 
 </manifest>
