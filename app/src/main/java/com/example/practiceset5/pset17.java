@@ -1,78 +1,113 @@
 package com.example.practiceset5;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+        import android.database.Cursor;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
 
 public class pset17 extends AppCompatActivity {
-    pset17_helperD myHelper;
-    EditText ed_id;
-    EditText ed_fnmae ;
-    EditText ed_lname;
-    EditText ed_address ;
-    EditText ed_salary ;
-    Button btn_insert;
-    Button btn_delete;
-    Button btn_update;
-    Button btn_load ;
+
+    private EditText e1,e2,e3;
+    Button b1,b2,b3,b4;
+    TextView txtV;
+    pset17_helperD myhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pset17);
+
+
         init();
-        myHelper = new pset17_helperD(this);
+        myhelper = new pset17_helperD(pset17.this);
+    }
+
+    private void init()
+    {
+        e1 = (EditText)findViewById(R.id.editText);
+        e2 = (EditText)findViewById(R.id.editText2);
+        e3 = (EditText)findViewById(R.id.editText3);
+
+        b1=(Button)findViewById(R.id.pset18_btnsave);
+        b2=(Button)findViewById(R.id.pset18_btnload);
+        b3=(Button)findViewById(R.id.button3);
+        b4=(Button)findViewById(R.id.button4);
+
+
+
+        b1.setOnClickListener(dbButtonListener);
+        b2.setOnClickListener(dbButtonListener);
+        b3.setOnClickListener(dbButtonListener);
+        b4.setOnClickListener(dbButtonListener);
+        txtV = (TextView)findViewById(R.id.textViewdb);
 
     }
 
-    public void init(){
-        ed_id = (EditText)findViewById(R.id.pset17_id_input) ;
-        ed_fnmae = (EditText)findViewById(R.id.pset17_fname_input) ;
-        ed_lname = (EditText)findViewById(R.id.pset17_lname_input) ;
-        ed_address = (EditText)findViewById(R.id.pset17_address_input) ;
-        ed_salary = (EditText)findViewById(R.id.pset17_salary_input) ;
-        btn_insert = (Button)findViewById(R.id.pset17_insert_btn);
-        btn_delete = (Button)findViewById(R.id.pset17_delete_btn);
-        btn_update = (Button)findViewById(R.id.pset17_update_btn);
-        btn_load = (Button)findViewById(R.id.pset17_loadall_btn);
-        btn_insert.setOnClickListener(dbButtonsListener);
-        btn_delete.setOnClickListener(dbButtonsListener);
-        btn_update.setOnClickListener(dbButtonsListener);
-        btn_load.setOnClickListener(dbButtonsListener);
+    private View.OnClickListener dbButtonListener = new View.OnClickListener()
+    {
 
-    }
-    private View.OnClickListener dbButtonsListener = new View.OnClickListener(){
+
         @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case  R.id.pset17_insert_btn :
-                    long result = myHelper.insert(Integer.parseInt(ed_id.getText().toString().trim()),ed_fnmae.getText().toString().trim(),ed_lname.getText().toString().trim(),ed_address.getText().toString().trim(),Integer.parseInt(ed_salary.getText().toString().trim()));
-                    if(result==-1){
-                        Toast.makeText(pset17.this, "Error inserting", Toast.LENGTH_SHORT).show();
+        public void onClick(View v) {
+            switch (v.getId())
+            {
+                case R.id.pset18_btnsave:
+                    long result = myhelper.insert(Integer.parseInt(e1.getText().toString().trim()) , e2.getText().toString() , e3.getText().toString());
+                    if(result == -1)
+                    {
+                        Toast.makeText(getApplicationContext(),"Error", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(pset17.this,"Inserted",Toast.LENGTH_SHORT).show();
+                    else
+                    {
+                        Toast.makeText(pset17.this, "its alright", Toast.LENGTH_SHORT).show();
+                        showData();
                     }
                     break;
-                case R.id.pset17_delete_btn :
-                break;
-                case R.id.pset17_update_btn :
-                break;
-                case R.id.pset17_loadall_btn :
-                break;
+                case R.id.pset18_btnload:
+                    myhelper.del(Integer.parseInt(e1.getText().toString()));
+                    showData();
+                    break;
+
+                case R.id.button3:
+                    myhelper.update(Integer.parseInt(e1.getText().toString().trim()) , e2.getText().toString() , e3.getText().toString());
+                    showData();
+                    break;
+                case R.id.button4:
+                    showData();
+                    break;
+
             }
+
         }
     };
-    protected void onStart(){
+    public void showData() {
+        StringBuffer finalData = new StringBuffer();
+        Cursor cursor = myhelper.getAllRecords();
+        finalData.append(" ID      |     Fname    |  Lname \n");
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+            finalData.append(cursor.getInt(cursor.getColumnIndex(myhelper.ID)));
+            finalData.append("  | ");
+            finalData.append(cursor.getString(cursor.getColumnIndex(myhelper.Fname)));
+            finalData.append("  | ");
+            finalData.append(cursor.getString(cursor.getColumnIndex(myhelper.Lname)));
+            finalData.append("\n");
+        }
+        txtV.setText(finalData);
+    }
+    @Override
+    protected void onStart() {
         super.onStart();
-        myHelper.openDb();
+        myhelper.openDb();
     }
 
-    protected void onStop(){
+    @Override
+    protected void onStop() {
         super.onStop();
-        myHelper.closeDb();
+        myhelper.closeDb();
     }
 }

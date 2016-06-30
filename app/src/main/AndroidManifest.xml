@@ -61,7 +61,9 @@
         <activity android:name=".pset15" />
         <activity android:name=".pset16" />
         <activity android:name=".day8" />
-        <activity android:name=".pset17"></activity>
+        <activity android:name=".pset17" />
+        <activity android:name=".day9" />
+        <activity android:name=".pset18"></activity>
     </application>
 
 </manifest>

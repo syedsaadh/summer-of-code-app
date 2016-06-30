@@ -89,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        LinearLayout btn9=(LinearLayout)findViewById(R.id.btn9);
+        btn9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, day9.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
