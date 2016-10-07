@@ -1,10 +1,15 @@
 package com.example.practiceset5;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -28,6 +33,8 @@ public class pset11 extends AppCompatActivity {
     PendingIntent pidel;
     IntentFilter infdel;
     String sms_del="Message delivered";
+
+    private static int SMS_SEND_PERMISSION = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +96,28 @@ public class pset11 extends AppCompatActivity {
         editText2 = (EditText)findViewById(R.id.editTextMessage);
         String mobileNumber = editText1.getText().toString();
         String message = editText2.getText().toString();
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(mobileNumber, null, message, null, null);
-        Toast.makeText(getApplicationContext(),"SMS_SENT",Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(),"SMS_DELIVERED",Toast.LENGTH_SHORT).show();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.SEND_SMS}, SMS_SEND_PERMISSION);
+        } else {
+            try {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(mobileNumber, null, message, null, null);
+                Toast.makeText(getApplicationContext(), "SMS_SENT", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "SMS_DELIVERED", Toast.LENGTH_SHORT).show();
+            } catch (NullPointerException e) {
+                Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == SMS_SEND_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(),"SMS sending permission granted. Click the button again.",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(),"SMS sending permission denied.",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
