@@ -34,7 +34,7 @@ public class pset16 extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_contact) {
             Intent i = new Intent();
-            i.setAction(Intent.ACTION_CALL);
+            i.setAction(Intent.ACTION_DIAL);
             i.setData(Uri.parse("tel:121"));
             startActivity(i);
         }
